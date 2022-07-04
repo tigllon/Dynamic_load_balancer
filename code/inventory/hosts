@@ -1,0 +1,4 @@
+[loadbalancer]
+172.31.1.215	ansible_connection=ssh	ansible_user=root	ansible_password=passred123
+
+[webserver]

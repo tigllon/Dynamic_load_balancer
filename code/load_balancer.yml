@@ -1,0 +1,17 @@
+# Ansible Playbook for provisioning the HaProxy load balancer
+- hosts : loadbalancer
+  tasks :
+    - name : Installing the HaProxy Load Balancer
+      package :
+        name : haproxy
+        state : present
+
+    - name : Configuring the HaProxy Load Balancer
+      template :
+        src : configuration/haproxy.cfg.j2
+        dest : /etc/haproxy/haproxy.cfg
+
+    - name : Starting the HaProxy Service
+      service :
+        name : haproxy
+        state : restarted 

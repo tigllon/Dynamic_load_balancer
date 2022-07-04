@@ -1,0 +1,33 @@
+- hosts : loadbalancer
+
+  vars_files :
+          - "envs/publickey.env"
+
+  vars_prompt :
+    - name : nam 
+      prompt : "Enter the name of the webserver-: "
+
+  tasks :
+    - name : Launching the Web Server on the top fo docker container
+      docker_container :
+        name : "{{ nam }}"
+        image : tigllon/load_balancer
+        detach : true
+        interactive : yes
+        tty : yes
+        env :
+                public_key : "{{ publickey }}"
+
+
+- hosts : loadbalancer
+  tasks :
+
+  - name : re-configuring the HaProxy load balancer
+    template :
+          src : configuration/haproxy.cfg.j2
+          dest : /etc/haproxy/haproxy.cfg
+
+  - name : re-starting the service
+    service :
+          name : haproxy
+          state : restarted
