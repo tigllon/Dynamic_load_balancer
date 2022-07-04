@@ -21,7 +21,7 @@ Also , login to your docker hub repository (if you do not have account then make
 docker login
 ```
 This would cause the on-demand downloading of the container images, so we do not have to download them manually.
-But if you do want/can't  to login , then downalod the [image](https://hub.docker.com/repository/docker/tigllon/load_balancer) at your workstation.
+But if you do not want/can't  to login , then downalod the [image](https://hub.docker.com/repository/docker/tigllon/load_balancer) at your workstation.
 
 Now , provison the load balancer using ansible-playbook
 ```
